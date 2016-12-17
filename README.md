@@ -87,6 +87,15 @@ routes.add(method: .get, uri: "/", handler: {
 	}
 )
 
+routes.add(method: .get, uri: "/users/{username}", handler: {
+		request, response in
+		let username = request.urlVariables["username"]
+		response.setHeader(.contentType, value: "text/html")
+		response.appendBody(string: "Hello, \(username!)")
+		response.completed()
+	}
+)
+
 // Add the routes to the server.
 server.addRoutes(routes)
 
